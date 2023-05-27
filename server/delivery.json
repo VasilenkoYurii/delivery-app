@@ -1,0 +1,186 @@
+[
+  {
+    "shop": "mc-donalds",
+    "name": "Big Mac",
+    "price": 200,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/BIG_MAC:product-header-desktop?wid=829&hei=455&dpr=off",
+    "kcal": "205 g | 503 kcal",
+    "description": "Two steaks with natural yalovichini, cibula, marinated sturgeon, Cheddar cheese, fresh salad dressed with special sauce, sesame seeds on the bun."
+  },
+  {
+    "shop": "mc-donalds",
+    "name": "Hamburger",
+    "price": 80,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/Sdwch_Hamburger:product-header-desktop?wid=830&hei=456&dpr=off",
+    "kcal": "96 g | 253 kcal",
+    "description": "Beef steak from natural yalovichini, cibula, a piece of pickled cider, seasoned with mustard and ketchup, on a winter bun with wheat boar."
+  },
+  {
+    "shop": "mc-donalds",
+    "name": "Cheeseburger",
+    "price": 105,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/Sdwch_Cheeseburger:product-header-desktop?wid=830&hei=458&dpr=off",
+    "kcal": "109 g | 302 kcal",
+    "description": "Beef steak from natural yalovichini, a piece of Cheddar syrah, a piece of pickled cibula and cibula, seasoned with mustard and ketchup, on a bun with wheat boar."
+  },
+  {
+    "shop": "mc-donalds",
+    "name": "Double Cheeseburger",
+    "price": 150,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/SdwchDoubleCheeseburger:product-header-desktop?wid=830&hei=458&dpr=off",
+    "kcal": "163 g | 442 kcal",
+    "description": "Two steaks with natural yalovichini, two pieces of sirah Cheder, two pickled cider, cibula, mustard, ketchup, bun."
+  },
+  {
+    "shop": "mc-donalds",
+    "name": "Royal Cheeseburger",
+    "price": 150,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/Public_ROYAL_ch-2:product-header-desktop?wid=1463&hei=804&dpr=off",
+    "kcal": "190 g | 521 kcal",
+    "description": "Beef steak from natural yalovichini, two slices of cheese Cheder, two pieces of pickled cider and fresh cibula seasoned with mustard and ketchup, a bun with wheat boar."
+  },
+  {
+    "shop": "mc-donalds",
+    "name": "Double Royal Cheeseburger",
+    "price": 210,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/Public_ROYAL_ch_DBL-2:product-header-desktop?wid=1463&hei=804&dpr=off",
+    "kcal": "245 g | 749 kcal",
+    "description": "Beef steak from natural yalovichini, two slices of cheese Cheder, two pieces of pickled cider and fresh cibula seasoned with mustard and ketchup, a bun with wheat boar."
+  },
+  {
+    "shop": "mc-donalds",
+    "name": "Chicken Roll",
+    "price": 170,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/chicken_roll:product-header-desktop?wid=829&hei=455&dpr=off",
+    "kcal": "215 g | 532 kcal",
+    "description": "Chicken pieces, fresh tomatoes and crunchy lettuce are fried into thin pita bread – all seasoned with piquant honey-rice sauce."
+  },
+  {
+    "shop": "mc-donalds",
+    "name": "Chicken McNuggets 9pcs",
+    "price": 165,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/Nuggets_9:product-header-desktop?wid=829&hei=455&dpr=off",
+    "kcal": "150 g | 397 kcal",
+    "description": "Appetizing pieces of lower chicken fillet, lubricated with crisp breading."
+  },
+  {
+    "shop": "mc-donalds",
+    "name": "French fries are big",
+    "price": 110,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/FFLarge:product-header-desktop?wid=830&hei=456&dpr=off",
+    "kcal": "120 g | 434 kcal",
+    "description": "Dobirna potatoes, lubricated in natural olive oil and trochs of saltine."
+  },
+  {
+    "shop": "mc-donalds",
+    "name": "Coca-Cola®",
+    "price": 60,
+    "logo": "https://s7d1.scene7.com/is/image/mcdonalds/CocaColaMedium:product-header-desktop?wid=830&hei=456&dpr=off",
+    "kcal": "500 ml | 204 kcal",
+    "description": "All-worldly refreshing drink."
+  },
+  {
+    "shop": "dominos",
+    "name": "Pizza Diablo",
+    "price": 240,
+    "logo": "https://dominos.ua/_next/image?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2FPitsa%2FPitsy%2Fdiabolo-fullpizza.webp&w=600&q=75f",
+    "kcal": null,
+    "description": "Peperoni, Mozzarella, Tomatoes, Jalapeno, Domino's Sauce, Chorizo"
+  },
+  {
+    "shop": "dominos",
+    "name": "Pizza with veal",
+    "price": 310,
+    "logo": "https://dominos.ua/_next/image?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2FPitsa%2FPitsy%2Fbeef-pizza-plate.webp&w=600&q=75",
+    "kcal": null,
+    "description": "Barbecue sauce, Mozzarella, Tomatoes, Veal"
+  },
+  {
+    "shop": "dominos",
+    "name": "Pizza Toní Peperoni",
+    "price": 290,
+    "logo": "https://dominos.ua/_next/image?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Ftony-pepperony-min.webp&w=600&q=75",
+    "kcal": null,
+    "description": "Mozzarella, Peperoni, Domino's Sauce"
+  },
+  {
+    "shop": "dominos",
+    "name": "Pizza Provence",
+    "price": 340,
+    "logo": "https://dominos.ua/_next/image?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fprovans-min.webp&w=600&q=75",
+    "kcal": null,
+    "description": "Mozzarella, Tomatoes, Peperoni, Alfredo sauce, Bergader Blue, Shinka"
+  },
+  {
+    "shop": "dominos",
+    "name": "Pizza Extravaganza",
+    "price": 330,
+    "logo": "https://dominos.ua/_next/image?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fekstravahanza-reedit1-min.webp&w=600&q=75",
+    "kcal": null,
+    "description": "Peperoni, Meatballs, Shinka, Mozzarella, Bulgarian pepper, Cibulya, Olives, Mushrooms, Domino's Sauce"
+  },
+  {
+    "shop": "suchi",
+    "name": "ROLL FUJI",
+    "price": 230,
+    "logo": "https://sushi-point.com.ua/uploads/product/big/fudzi.jpg",
+    "kcal": "220 g | 209 Kcal",
+    "description": "Rice, masago caviar, sesame seeds, cream cheese, s/s salmon, marinated ginger."
+  },
+  {
+    "shop": "suchi",
+    "name": "PHILADELPHIA WITH TUNA",
+    "price": 250,
+    "logo": "https://sushi-point.com.ua/uploads/product/big/filadelfiya-s-tuntsom.jpg",
+    "kcal": "225 g | 194 Kcal",
+    "description": "Rice, tuna, cream cheese, cucumber, sesame"
+  },
+  {
+    "shop": "suchi",
+    "name": "GUNKAN SPICE EEL",
+    "price": 130,
+    "logo": "https://sushi-point.com.ua/uploads/product/big/gunkan-spajs-unagi.jpg",
+    "kcal": "70 g | 60 Kcal",
+    "description": "Rice, eel, spice sauce"
+  },
+  {
+    "shop": "suchi",
+    "name": "СЕТ LOVE S-P",
+    "price": 530,
+    "logo": "https://sushi-point.com.ua/uploads/product/big/set-love-s-p.jpg",
+    "kcal": "970 g | 1328 Kcal",
+    "description": "Philadelphia in sesame with salmon , California , Rol Teriyaki , Poppy inside with crab cream , Poppy ogirok , Poppy spice chicken"
+  },
+  {
+    "shop": "suchi",
+    "name": "FUNCHOSA WITH CHICKEN",
+    "price": 170,
+    "logo": "https://dominos.ua/_next/image?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fekstravahanza-reedit1-min.webp&w=600&q=75",
+    "kcal": "320 g | 422 Kcal",
+    "description": "Chicken, Oyster mushrooms, Asparagus beans, Bell pepper, Carrot, Funchoza, Soy sauce, Sriracha sauce, Chili pepper"
+  },
+  {
+    "shop": "sweets",
+    "name": "Eclair with blueberries",
+    "price": 90,
+    "logo": "https://kalina.ua/wp-content/uploads/2021/06/66e33666-e0d0-45f1-8a8e-e79c33790eb2.jpeg",
+    "kcal": null,
+    "description": "An airy choux pastry cake with creamy custard inside and fresh blueberries."
+  },
+  {
+    "shop": "sweets",
+    "name": "Macaron Nut",
+    "price": 40,
+    "logo": "https://kalina.ua/wp-content/uploads/2021/06/e710cfeb-5efe-4b4f-be2b-aec38970329e.jpeg",
+    "kcal": null,
+    "description": "Macaron Nut. Weight - 25 grams."
+  },
+  {
+    "shop": "sweets",
+    "name": "Strawberry tart",
+    "price": 570,
+    "logo": "https://kalina.ua/wp-content/uploads/2020/06/58550ea9-a0c1-4d7a-acd6-d71e91d99891.jpeg",
+    "kcal": null,
+    "description": "Shortbread basket with custard inside, covered with fresh strawberries and edible flower decor."
+  }
+]
