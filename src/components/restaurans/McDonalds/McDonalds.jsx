@@ -1,30 +1,29 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectMenu } from 'redux/selectors';
+import { addOrder } from 'redux/operations';
 
 export const McDonalds = () => {
+  const dispatch = useDispatch();
   const menu = useSelector(selectMenu);
   const macMenu = menu.filter(rest => rest.shop === 'mc-donalds');
-
-  console.log(macMenu);
 
   return (
     <>
       {menu && (
         <div>
           <ul>
-            {macMenu.map(({ _id, name, logo, price, description, kcal }) => {
+            {macMenu.map(mcMenu => {
               return (
-                <li key={_id}>
-                  <img src={logo} alt={name} />
-                  <h3>{name}</h3>
-                  <p>{price} ₴</p>
-                  {kcal && <p>{kcal}</p>}
-                  <p>{description}</p>
+                <li key={mcMenu._id}>
+                  <img src={mcMenu.logo} alt={mcMenu.name} />
+                  <h3>{mcMenu.name}</h3>
+                  <p>{mcMenu.price} ₴</p>
+                  {mcMenu.kcal && <p>{mcMenu.kcal}</p>}
+                  <p>{mcMenu.description}</p>
                   <button
                     onClick={() => {
-                      console.log(
-                        `Добавлено в покупки ${_id} ${name} ${logo} ${price} ${description} ${kcal}`
-                      );
+                      // console.log(mcMenu);
+                      dispatch(addOrder(mcMenu));
                     }}
                   >
                     add to Cart

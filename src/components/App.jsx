@@ -20,10 +20,6 @@ export const App = () => {
     dispatch(addMenu());
   }, [dispatch]);
 
-  setTimeout(() => {
-    console.log(menu);
-  }, 1500);
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
