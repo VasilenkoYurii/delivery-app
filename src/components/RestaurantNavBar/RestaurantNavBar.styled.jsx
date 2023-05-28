@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const NavBarContainer = styled.div`
-  padding-top: 20px;
   width: 300px;
   height: 100vh;
 

@@ -17,6 +17,7 @@ export const ListItem = styled.li`
 
 export const ItemImg = styled.img`
   width: 280px;
+  height: 210px;
   display: block;
 `;
 
