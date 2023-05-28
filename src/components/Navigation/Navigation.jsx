@@ -1,11 +1,16 @@
-import { Nav, NavLinkStyled } from './Navigation.styled';
+import { Nav, NavLinkStyled, NavContainer } from './Navigation.styled';
 
 export const Navigation = () => {
   return (
     <Nav>
-      <NavLinkStyled to="/">Home</NavLinkStyled>
-      <NavLinkStyled to="/shop">Shop</NavLinkStyled>
-      <NavLinkStyled to="/shoppingCart">Shopping Cart</NavLinkStyled>
+      <NavContainer>
+        <NavLinkStyled to="/">Home</NavLinkStyled>
+        <NavLinkStyled to="/shop">Shop</NavLinkStyled>
+      </NavContainer>
+      <NavContainer>
+        <NavLinkStyled to="/shoppingCart">Shopping Cart</NavLinkStyled>
+        <NavLinkStyled to="/">Shopping History</NavLinkStyled>
+      </NavContainer>
     </Nav>
   );
 };

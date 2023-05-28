@@ -1,7 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectMenu } from 'redux/selectors';
+import { addOrder } from 'redux/operations';
 
 export const Sushi = () => {
+  const dispatch = useDispatch();
   const menu = useSelector(selectMenu);
   const sushiMenu = menu.filter(rest => rest.shop === 'suchi');
 
@@ -12,19 +14,17 @@ export const Sushi = () => {
       {menu && (
         <div>
           <ul>
-            {sushiMenu.map(({ _id, name, logo, price, description, kcal }) => {
+            {sushiMenu.map(position => {
               return (
-                <li key={_id}>
-                  <img src={logo} alt={name} />
-                  <h3>{name}</h3>
-                  <p>{price} ₴</p>
-                  {kcal && <p>{kcal}</p>}
-                  <p>{description}</p>
+                <li key={position._id}>
+                  <img src={position.logo} alt={position.name} />
+                  <h3>{position.name}</h3>
+                  <p>{position.price} ₴</p>
+                  {position.kcal && <p>{position.kcal}</p>}
+                  <p>{position.description}</p>
                   <button
                     onClick={() => {
-                      console.log(
-                        `Добавлено в покупки ${_id} ${name} ${logo} ${price} ${description} ${kcal}`
-                      );
+                      dispatch(addOrder(position));
                     }}
                   >
                     add to Cart

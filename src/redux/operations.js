@@ -8,9 +8,6 @@ export const addMenu = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.get('/api/restaurants');
-
-      // console.log(response);
-
       return response.data;
     } catch (error) {
       console.error(error);
@@ -34,6 +31,30 @@ export const decrementQuantityOrder = createAsyncThunk(
   (credentials, thunkAPI) => {
     try {
       return credentials;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const incrementQuantityOrder = createAsyncThunk(
+  'user/incrementQuantityOrder',
+  (credentials, thunkAPI) => {
+    try {
+      return credentials;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const makeAnOrder = createAsyncThunk(
+  'user/makeAnOrder',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.post('/api/orders', credentials);
+
+      return response.data;
     } catch (error) {
       console.error(error);
     }

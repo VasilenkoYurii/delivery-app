@@ -2,57 +2,44 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
+  width: 100%;
+
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
-  gap: 4px;
+  gap: 15px;
+`;
 
-  @media screen and (min-width: 768px) {
-    gap: 15px;
-  }
+export const NavContainer = styled.div`
+  display: flex;
+  gap: 20px;
 `;
 
 export const NavLinkStyled = styled(NavLink)`
-  text-transform: uppercase;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 400;
   color: black;
-  border-bottom: 2px double black;
+  text-transform: uppercase;
 
   transition: all 0.5s ease;
 
-  &.active {
-    color: white;
-    border-bottom: 2px double white;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-decoration: none;
 
-    &:hover {
-      color: #66d0d0;
-      border-bottom: 2px double #66d0d0;
-    }
-  }
+  border-bottom: 2px solid #fff;
 
   &:hover {
-    color: #66d0d0;
-    border-bottom: 2px double #66d0d0;
+    color: #762929;
   }
 
-  @media screen and (min-width: 768px) {
-    border-bottom: 4px double black;
-    font-size: 22px;
-
-    &.active {
-      color: white;
-      border-bottom: 4px double white;
-
-      &:hover {
-        color: #66d0d0;
-        border-bottom: 4px double #66d0d0;
-      }
-    }
+  &.active {
+    color: black;
+    border-bottom: 2px solid red;
 
     &:hover {
-      color: #66d0d0;
-      border-bottom: 4px double #66d0d0;
+      color: #762929;
     }
   }
 `;

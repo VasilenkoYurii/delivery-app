@@ -28,3 +28,21 @@ export const decrementQuantity = (arr, id) => {
 
   return result;
 };
+
+export const incrementQuantity = (arr, id) => {
+  const result = arr
+    .map(obj => {
+      if (obj._id === id) {
+        obj.quantity--;
+        if (obj.quantity === 0) {
+          return null;
+        }
+      }
+      return obj;
+    })
+    .filter(obj => obj !== null);
+
+  console.log(result);
+
+  return result;
+};

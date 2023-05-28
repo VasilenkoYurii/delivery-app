@@ -12,18 +12,17 @@ export const McDonalds = () => {
       {menu && (
         <div>
           <ul>
-            {macMenu.map(mcMenu => {
+            {macMenu.map(position => {
               return (
-                <li key={mcMenu._id}>
-                  <img src={mcMenu.logo} alt={mcMenu.name} />
-                  <h3>{mcMenu.name}</h3>
-                  <p>{mcMenu.price} ₴</p>
-                  {mcMenu.kcal && <p>{mcMenu.kcal}</p>}
-                  <p>{mcMenu.description}</p>
+                <li key={position._id}>
+                  <img src={position.logo} alt={position.name} />
+                  <h3>{position.name}</h3>
+                  <p>{position.price} ₴</p>
+                  {position.kcal && <p>{position.kcal}</p>}
+                  <p>{position.description}</p>
                   <button
                     onClick={() => {
-                      // console.log(mcMenu);
-                      dispatch(addOrder(mcMenu));
+                      dispatch(addOrder(position));
                     }}
                   >
                     add to Cart

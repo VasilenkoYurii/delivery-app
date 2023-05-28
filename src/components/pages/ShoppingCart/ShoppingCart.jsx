@@ -1,7 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { selectOrder } from 'redux/selectors';
-import { decrementQuantityOrder } from 'redux/operations';
+import {
+  decrementQuantityOrder,
+  incrementQuantityOrder,
+  makeAnOrder,
+} from 'redux/operations';
 import {
   ShoppingCartContainer,
   OutletBox,
@@ -22,6 +26,8 @@ const ShoppingCart = () => {
   const [submitted, setSubmitted] = useState(false);
   const orders = useSelector(selectOrder);
 
+  console.log(orders);
+
   useEffect(() => {
     localStorage.setItem('name', name);
     localStorage.setItem('email', email);
@@ -32,7 +38,18 @@ const ShoppingCart = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(name, email, phone, address, comment);
+
+    const newUserOrder = {
+      name,
+      email,
+      phone,
+      address,
+      comment,
+      orders,
+    };
+
+    dispatch(makeAnOrder(newUserOrder));
+
     resetForm();
     setSubmitted(true);
   };
@@ -43,6 +60,17 @@ const ShoppingCart = () => {
     setPhone('');
     setAddress('');
     setComment('');
+  };
+
+  const price = arrOrder => {
+    const arrPrice = arrOrder.map(order => {
+      return order.price * order.quantity;
+    });
+
+    return arrPrice.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    );
   };
 
   return (
@@ -109,6 +137,7 @@ const ShoppingCart = () => {
           </OrderLabel>
           <button type="submit">Submit</button>
         </OrderForm>
+        {orders && <p>Order price: {price(orders)}</p>}
       </OrderFormContainer>
 
       {orders && (
@@ -121,6 +150,13 @@ const ShoppingCart = () => {
                 <p>{order.price} ₴</p>
                 {order.kcal && <p>{order.kcal}</p>}
                 <p>{order.description}</p>
+                <button
+                  onClick={() => {
+                    dispatch(incrementQuantityOrder(order));
+                  }}
+                >
+                  ----
+                </button>
                 <p>Quantity {order.quantity}</p>
                 <button
                   onClick={() => {

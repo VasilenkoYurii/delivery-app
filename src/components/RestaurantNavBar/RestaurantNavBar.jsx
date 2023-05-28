@@ -1,13 +1,12 @@
-import { NavBarContainer } from './RestaurantNavBar.styled';
-import { NavLink } from 'react-router-dom';
+import { NavBarContainer, Link } from './RestaurantNavBar.styled';
 
 export const RestaurantNavBar = () => {
   return (
     <NavBarContainer>
-      <NavLink to="mcDonalds">Mc. Donalds</NavLink>
-      <NavLink to="dominos">Dominos</NavLink>
-      <NavLink to="sushi">Sushi</NavLink>
-      <NavLink to="sweets">Sweets</NavLink>
+      <Link to="mcDonalds">Mc. Donalds</Link>
+      <Link to="dominos">Dominos</Link>
+      <Link to="sushi">Sushi</Link>
+      <Link to="sweets">Sweets</Link>
     </NavBarContainer>
   );
 };

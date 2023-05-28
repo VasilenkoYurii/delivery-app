@@ -4,6 +4,7 @@ const logger = require('morgan');
 const cors = require('cors');
 
 const restaurantsRouter = require('./routes/api/restaurants');
+const ordersRouter = require('./routes/api/orders');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/restaurants', restaurantsRouter);
+app.use('/api/orders', ordersRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
