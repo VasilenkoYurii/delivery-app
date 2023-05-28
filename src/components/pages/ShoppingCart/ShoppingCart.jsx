@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import { selectOrder } from 'redux/selectors';
 import {
   decrementQuantityOrder,
@@ -13,6 +14,19 @@ import {
   OrderForm,
   OrderLabel,
   OrderInput,
+  List,
+  ListItem,
+  ItemImg,
+  ItemTitle,
+  OrderPricePrg,
+  MessegeBeforeOrder,
+  SubmitFormButton,
+  ItemPrice,
+  QuantityContainer,
+  MainQuantityContainer,
+  PlusIcon,
+  ButtonQuantity,
+  MinusIcon,
 } from './ShoppingCart.styled';
 
 const ShoppingCart = () => {
@@ -26,8 +40,6 @@ const ShoppingCart = () => {
   const [submitted, setSubmitted] = useState(false);
   const orders = useSelector(selectOrder);
 
-  console.log(orders);
-
   useEffect(() => {
     localStorage.setItem('name', name);
     localStorage.setItem('email', email);
@@ -39,12 +51,25 @@ const ShoppingCart = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    if (orders.length === 0) {
+      toast.error('You need to add something from the menu to the order!', {
+        style: {
+          width: '300px',
+          height: '50px',
+          borderRadius: '10px',
+          fontSize: '20px',
+        },
+      });
+      return;
+    }
+
     const newUserOrder = {
       name,
       email,
       phone,
       address,
       comment,
+      price: price(orders),
       orders,
     };
 
@@ -135,57 +160,60 @@ const ShoppingCart = () => {
               }}
             />
           </OrderLabel>
-          <button type="submit">Submit</button>
+          <SubmitFormButton type="submit">Make an order</SubmitFormButton>
         </OrderForm>
-        {orders && <p>Order price: {price(orders)}</p>}
+        {orders.length !== 0 && (
+          <OrderPricePrg>Order price: {price(orders)}</OrderPricePrg>
+        )}
       </OrderFormContainer>
 
-      {orders && (
-        <ul>
-          {orders.map(order => {
-            return (
-              <li key={order._id}>
-                <img src={order.logo} alt={order.name} />
-                <h3>{order.name}</h3>
-                <p>{order.price} ₴</p>
-                {order.kcal && <p>{order.kcal}</p>}
-                <p>{order.description}</p>
-                <button
-                  onClick={() => {
-                    dispatch(incrementQuantityOrder(order));
-                  }}
-                >
-                  ----
-                </button>
-                <p>Quantity {order.quantity}</p>
-                <button
-                  onClick={() => {
-                    dispatch(decrementQuantityOrder(order));
-                  }}
-                >
-                  ++++
-                </button>
-                <button
-                // onClick={() => {
-                //   // console.log(mcMenu);
-                //   dispatch(addOrder(mcMenu));
-                // }}
-                >
-                  add to Cart
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-
-      {/* {submitted ? (
+      {submitted ? (
         <OutletBox>
-          <div>Hello</div>
+          <MessegeBeforeOrder>
+            Thank you for your order, we will contact you soon!
+          </MessegeBeforeOrder>
+        </OutletBox>
+      ) : orders.length === 0 ? (
+        <OutletBox>
+          <MessegeBeforeOrder>Cart is currently empty</MessegeBeforeOrder>
         </OutletBox>
       ) : (
-        <OutletBox></OutletBox>
-      )} */}
+        <OutletBox>
+          <List>
+            {orders.map(order => {
+              return (
+                <ListItem key={order._id}>
+                  <ItemImg src={order.logo} alt={order.name} />
+                  <ItemTitle>{order.name}</ItemTitle>
+                  <ItemPrice>{order.price} ₴</ItemPrice>
+
+                  <MainQuantityContainer>
+                    <ButtonQuantity
+                      onClick={() => {
+                        dispatch(incrementQuantityOrder(order));
+                      }}
+                    >
+                      <MinusIcon />
+                    </ButtonQuantity>
+                    <QuantityContainer>
+                      <p>Quantity:</p>
+                      <p>{order.quantity}</p>
+                    </QuantityContainer>
+
+                    <ButtonQuantity
+                      onClick={() => {
+                        dispatch(decrementQuantityOrder(order));
+                      }}
+                    >
+                      <PlusIcon />
+                    </ButtonQuantity>
+                  </MainQuantityContainer>
+                </ListItem>
+              );
+            })}
+          </List>
+        </OutletBox>
+      )}
     </ShoppingCartContainer>
   );
 };

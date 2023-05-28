@@ -13,6 +13,7 @@ const addSchema = Joi.object({
   phone: Joi.string().required(),
   address: Joi.string().required(),
   comment: Joi.any(),
+  price: Joi.number().required(),
   orders: Joi.array().required(),
 });
 

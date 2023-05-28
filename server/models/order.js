@@ -20,6 +20,10 @@ const orderSchema = new Schema({
   comment: {
     type: String,
   },
+  price: {
+    type: Number,
+    required: [true],
+  },
   orders: {
     type: Array,
     required: [true],
