@@ -127,6 +127,12 @@ export const SubmitFormButton = styled.button`
   border-radius: 2px;
   padding: 7px;
   cursor: pointer;
+
+  transition: all 500ms;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;
 
 export const QuantityContainer = styled.div`

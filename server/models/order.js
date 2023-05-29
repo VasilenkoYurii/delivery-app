@@ -24,6 +24,9 @@ const orderSchema = new Schema({
     type: Number,
     required: [true],
   },
+  createdAt: {
+    type: String,
+  },
   orders: {
     type: Array,
     required: [true],

@@ -9,7 +9,7 @@ export const Navigation = () => {
       </NavContainer>
       <NavContainer>
         <NavLinkStyled to="/shoppingCart">Shopping Cart</NavLinkStyled>
-        <NavLinkStyled to="/">Shopping History</NavLinkStyled>
+        <NavLinkStyled to="/shoppingHistory">Shopping History</NavLinkStyled>
       </NavContainer>
     </Nav>
   );

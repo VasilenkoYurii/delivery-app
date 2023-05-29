@@ -6,6 +6,8 @@ import {
   decrementQuantityOrder,
   incrementQuantityOrder,
   makeAnOrder,
+  findOrdersByEmail,
+  findOrdersByPhone,
 } from './operations';
 import {
   addQuantityToObjectArray,
@@ -16,6 +18,7 @@ import {
 const initialState = {
   restMenu: [],
   userOrder: [],
+  findOrders: [],
 };
 
 export const userSlice = createSlice({
@@ -96,6 +99,72 @@ export const userSlice = createSlice({
             fontSize: '20px',
           },
         });
+      })
+      .addCase(findOrdersByEmail.fulfilled, (state, { payload }) => {
+        state.findOrders = payload;
+        if (payload.length === 0) {
+          toast.error('There were no orders from this email!', {
+            style: {
+              width: '300px',
+              height: '50px',
+              borderRadius: '10px',
+              fontSize: '20px',
+            },
+          });
+        } else {
+          toast.success('We managed to find your orders!', {
+            style: {
+              width: '300px',
+              height: '50px',
+              borderRadius: '10px',
+              fontSize: '20px',
+            },
+          });
+        }
+      })
+      .addCase(findOrdersByEmail.rejected, () => {
+        toast.error('Something went wrong', {
+          style: {
+            width: '300px',
+            height: '50px',
+            borderRadius: '10px',
+            fontSize: '20px',
+          },
+        });
+      })
+      .addCase(findOrdersByPhone.fulfilled, (state, { payload }) => {
+        state.findOrders = payload;
+        if (payload.length === 0) {
+          toast.error('There were no orders from this phone!', {
+            style: {
+              width: '300px',
+              height: '50px',
+              borderRadius: '10px',
+              fontSize: '20px',
+            },
+          });
+        } else {
+          toast.success('We managed to find your orders!', {
+            style: {
+              width: '300px',
+              height: '50px',
+              borderRadius: '10px',
+              fontSize: '20px',
+            },
+          });
+        }
+      })
+      .addCase(findOrdersByPhone.rejected, () => {
+        toast.error('Something went wrong', {
+          style: {
+            width: '300px',
+            height: '50px',
+            borderRadius: '10px',
+            fontSize: '20px',
+          },
+        });
       });
   },
 });
+
+// findOrdersByPhone

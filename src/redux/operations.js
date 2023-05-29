@@ -60,3 +60,31 @@ export const makeAnOrder = createAsyncThunk(
     }
   }
 );
+
+export const findOrdersByEmail = createAsyncThunk(
+  'user/findOrdersByEmail',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.get(`/api/orders/byEmail/${credentials}`);
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const findOrdersByPhone = createAsyncThunk(
+  'user/findOrdersByPhone',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.get(`/api/orders/byPhone/${credentials}`);
+
+      console.log('response.data');
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);

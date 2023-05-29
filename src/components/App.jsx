@@ -1,8 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addMenu } from 'redux/operations';
-import { selectMenu } from 'redux/selectors';
 
 import { Layout } from './Layout/Layout';
 import { HomePage } from './pages/HomePage/HomePage';
@@ -12,10 +11,11 @@ import { McDonalds } from './restaurans/McDonalds/McDonalds';
 import { Dominos } from './restaurans/Domonos/Dominos';
 import { Sushi } from './restaurans/Sushi/Sushi';
 import { Sweets } from './restaurans/Sweets/Sweets';
+import { ShopingHostoryPage } from './pages/ShopingHistory/ShopingHistory';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const menu = useSelector(selectMenu);
+
   useEffect(() => {
     dispatch(addMenu());
   }, [dispatch]);
@@ -31,6 +31,8 @@ export const App = () => {
           <Route path="sweets" element={<Sweets />} />
         </Route>
         <Route path="/shoppingCart" element={<ShoppingCart />} />
+        <Route path="/shoppingHistory" element={<ShopingHostoryPage />} />
+        <Route path="*" element={<HomePage />} />
       </Route>
     </Routes>
   );
