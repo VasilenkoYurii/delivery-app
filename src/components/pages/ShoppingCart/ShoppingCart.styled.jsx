@@ -27,6 +27,8 @@ export const OrderFormContainer = styled.div`
   align-items: center;
   gap: 20px;
 
+  border-radius: 2px;
+
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
 `;
 
@@ -68,6 +70,8 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   padding: 5px;
   width: 280px;
+
+  border-radius: 2px;
 
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
 `;
