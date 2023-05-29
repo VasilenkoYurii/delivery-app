@@ -34,6 +34,23 @@ export const userSlice = createSlice({
         console.log('wa');
       })
       .addCase(addOrder.fulfilled, (state, { payload }) => {
+        const arrOrder = JSON.parse(JSON.stringify(state.userOrder));
+
+        if (arrOrder.length !== 0 && arrOrder[0].shop !== payload.shop) {
+          toast.error(
+            'You can only choose a product from one store at a time',
+            {
+              style: {
+                width: '400px',
+                height: '50px',
+                borderRadius: '10px',
+                fontSize: '20px',
+              },
+            }
+          );
+          return;
+        }
+
         const updatedOrder = addQuantityToObjectArray([
           ...state.userOrder,
           payload,
