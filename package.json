@@ -1,0 +1,13 @@
+{
+  "name": "react-homework-template",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://VasilenkoYurii.github.io/delivery-app/",
+  "repository": {
+    "type": "git",
+    "url": "https://VasilenkoYurii.github.io/delivery-app/"
+  },
+  "scripts": {
+    "start": "node server/server.js"
+  }
+}
