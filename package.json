@@ -8,6 +8,8 @@
     "url": "https://VasilenkoYurii.github.io/delivery-app/"
   },
   "scripts": {
-    "start": "node server/server.js"
+    "client-install": "cd client && npm install",
+    "server-install": "cd server && npm install",
+    "start": "concurrently \"npm run client-install\" \"npm run server-install\" && node server/server.js"
   }
 }
