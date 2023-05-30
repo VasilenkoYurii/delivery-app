@@ -1,14 +1,8 @@
-## BackEnd
+## Delivery-app
 
-To run the server, you need to run the following commands.
+To run the app, follow these steps
 
-1. `cd server`
-2. `npm i`
-3. `npm start`
-
-## FrontEnd
-
-To run ffrontend, you need to run the following commands. In the root folder
-
-1. `npm i`
-2. `npm start`
+1. `npm run heroku-prebuild`
+2. `npm run heroku-postbuild`
+3. `npm run start`
+4. open in your browser `http://localhost:3001/`
