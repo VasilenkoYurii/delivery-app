@@ -9,6 +9,7 @@
   },
   "scripts": {
     "client-install": "cd client && npm install",
+    "client-build": "cd client && npm run build",
     "server-install": "cd server && npm install",
     "start": "concurrently \"npm run client-install\" \"npm run server-install\" && node server/server.js"
   },
