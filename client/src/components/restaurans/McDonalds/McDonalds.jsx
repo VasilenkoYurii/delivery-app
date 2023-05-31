@@ -13,6 +13,7 @@ import {
 export const McDonalds = () => {
   const dispatch = useDispatch();
   const menu = useSelector(selectMenu);
+
   const macMenu = menu.filter(rest => rest.shop === 'mc-donalds');
 
   return (
