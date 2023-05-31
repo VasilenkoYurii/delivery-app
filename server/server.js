@@ -4,7 +4,7 @@ const app = require("./app");
 
 const DB_HOST =
   "mongodb+srv://yuravasilenko98:8O3aoi12zjvLNhOs@cluster0.oarorn8.mongodb.net/db-delivery?retryWrites=true&w=majority";
-const PORT = "delivery-app-test.herokuapp.com";
+const PORT = process.env.PORT || 3001;
 
 mongoose.set("strictQuery", true);
 
