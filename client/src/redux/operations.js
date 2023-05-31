@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = `https://delivery-app-test.herokuapp.com/api`;
+axios.defaults.baseURL = `${window.location.origin}/api`;
 
 export const addMenu = createAsyncThunk(
   'user/addMenu',
