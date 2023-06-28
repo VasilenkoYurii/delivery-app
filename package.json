@@ -7,6 +7,10 @@
     "type": "git",
     "url": "https://VasilenkoYurii.github.io/delivery-app/"
   },
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  },
   "scripts": {
     "heroku-prebuild": "concurrently \"npm run client-install\" \"npm run server-install\"",
     "heroku-postbuild": "cd client && npm run build",
@@ -15,6 +19,6 @@
     "start": "node server/server.js"
   },
   "dependencies": {
-    "concurrently": "^6.2.0"
+    "concurrently": "^6.5.1"
   }
 }
