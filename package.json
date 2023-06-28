@@ -15,6 +15,6 @@
     "start": "node server/server.js"
   },
   "dependencies": {
-    "concurrently": "latest"
+    "concurrently": "^6.2.0"
   }
 }
