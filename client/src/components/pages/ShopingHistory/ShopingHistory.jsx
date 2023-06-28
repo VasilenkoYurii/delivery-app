@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import {
   ShoppingHistoryContainer,
   ResponsContainer,
@@ -43,6 +44,9 @@ export const ShopingHostoryPage = () => {
 
   return (
     <ShoppingHistoryContainer>
+      <Helmet>
+        <title>ORDER HISTORY</title>
+      </Helmet>
       <HisrotyFormContainer>
         <HistoryFormTitle>Your order history</HistoryFormTitle>
 

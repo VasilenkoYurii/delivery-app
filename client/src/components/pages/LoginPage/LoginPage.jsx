@@ -1,5 +1,6 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { Helmet } from 'react-helmet';
 
 import {
   Container,
@@ -25,6 +26,9 @@ const validationSchema = Yup.object({
 export const LoginPage = () => {
   return (
     <Container>
+      <Helmet>
+        <title>LOGIN</title>
+      </Helmet>
       <FormContainer>
         <FormTitle>Login</FormTitle>
         <Formik

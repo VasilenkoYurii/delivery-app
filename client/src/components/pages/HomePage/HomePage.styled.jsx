@@ -74,9 +74,17 @@ export const BannerImg = styled.img`
   border-radius: 2px;
 `;
 
-export const ProposeLink = styled(Link)`
-  margin-bottom: auto;
+export const DiscontBannerBox = styled.div`
+  width: 290px;
+  height: 900px;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ProposeLink = styled(Link)`
   border-radius: 2px;
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
 
@@ -85,6 +93,11 @@ export const ProposeLink = styled(Link)`
   &:hover {
     transform: scale(1.01);
   }
+`;
+
+export const WarningBannerBox = styled.div`
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
 `;
 
 export const DiscontImg = styled.img`

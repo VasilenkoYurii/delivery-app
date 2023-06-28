@@ -7,6 +7,7 @@ import {
   incrementQuantityOrder,
   makeAnOrder,
 } from 'redux/operations';
+import { Helmet } from 'react-helmet';
 
 import { Map } from 'components/Map/Map';
 import { useJsApiLoader } from '@react-google-maps/api';
@@ -157,6 +158,10 @@ const ShoppingCart = () => {
 
   return (
     <ShoppingCartContainer>
+      <Helmet>
+        <title>SHOPPING CART</title>
+      </Helmet>
+
       <OrderFormContainer>
         <OrderForm
           onSubmit={e => {

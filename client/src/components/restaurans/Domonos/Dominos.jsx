@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { selectMenu } from 'redux/selectors';
 import { addOrder } from 'redux/operations';
+import { Helmet } from 'react-helmet';
 import {
   List,
   ListItem,
@@ -19,6 +20,9 @@ export const Dominos = () => {
     <>
       {menu && (
         <List>
+          <Helmet>
+            <title>Dominos</title>
+          </Helmet>
           {domMenu.map(position => {
             return (
               <ListItem key={position._id}>
