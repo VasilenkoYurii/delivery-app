@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+import { BsCart4, BsFillPersonFill } from 'react-icons/bs';
 
 export const Nav = styled.nav`
   width: 100%;
@@ -42,4 +43,12 @@ export const NavLinkStyled = styled(NavLink)`
       color: #762929;
     }
   }
+`;
+
+export const CartIcon = styled(BsCart4)`
+  width: 60px;
+`;
+
+export const PersonIcon = styled(BsFillPersonFill)`
+  width: 60px;
 `;

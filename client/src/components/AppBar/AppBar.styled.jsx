@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const AppBarContainer = styled.div`
+export const AppBarContainer = styled.header`
   padding: 0 400px;
   display: flex;
   justify-content: space-around;

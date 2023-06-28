@@ -1,11 +1,20 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
+  width: 1120px;
   padding-top: 50px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const RestContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Title = styled.h1`
@@ -17,10 +26,11 @@ export const Title = styled.h1`
 
 export const LinkContainer = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 20px;
 `;
 
-export const Link = styled(NavLink)`
+export const RestLink = styled(Link)`
   padding: 5px;
   text-decoration: none;
   display: flex;
@@ -50,7 +60,36 @@ export const Img = styled.img`
   height: 200px;
 `;
 
-export const LinkPrg = styled.p`
-  color: black;
-  font-size: 20px;
+export const BannerBox = styled.div`
+  width: 280px;
+  background-color: #313131;
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+`;
+
+export const BannerImg = styled.img`
+  display: block;
+  height: 900px;
+
+  border-radius: 2px;
+`;
+
+export const ProposeLink = styled(Link)`
+  margin-bottom: auto;
+
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+
+  transition: transform 500ms;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+`;
+
+export const DiscontImg = styled.img`
+  display: block;
+  width: 280px;
+
+  border-radius: 2px;
 `;

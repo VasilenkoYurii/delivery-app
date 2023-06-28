@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-hot-toast';
 import { selectOrder } from 'redux/selectors';
 import {
@@ -7,6 +7,11 @@ import {
   incrementQuantityOrder,
   makeAnOrder,
 } from 'redux/operations';
+
+import { Map } from 'components/Map/Map';
+import { useJsApiLoader } from '@react-google-maps/api';
+import { Autocomplite } from 'components/Autocomplite/Autocomplite';
+
 import {
   ShoppingCartContainer,
   OutletBox,
@@ -27,7 +32,15 @@ import {
   PlusIcon,
   ButtonQuantity,
   MinusIcon,
+  ButtonMap,
+  ButtonMapContainer,
 } from './ShoppingCart.styled';
+
+const defCenter = {
+  lat: 50.4501,
+  lng: 30.5234,
+};
+const libraries = ['places'];
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -38,7 +51,17 @@ const ShoppingCart = () => {
   const [address, setAddress] = useState(localStorage.getItem('address') || '');
   const [comment, setComment] = useState(localStorage.getItem('comment') || '');
   const [submitted, setSubmitted] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [center, setCenter] = useState(defCenter);
+  const [marker, setMarker] = useState(null);
+  const [adress, setAdress] = useState('');
   const orders = useSelector(selectOrder);
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyCzpvGD2TMrrs1zAtqq5RsydgIJMJmfD4Y',
+    libraries,
+  });
 
   useEffect(() => {
     localStorage.setItem('name', name);
@@ -73,6 +96,8 @@ const ShoppingCart = () => {
       orders,
     };
 
+    console.log(newUserOrder);
+
     dispatch(makeAnOrder(newUserOrder));
 
     resetForm();
@@ -84,7 +109,9 @@ const ShoppingCart = () => {
     setEmail('');
     setPhone('');
     setAddress('');
+    setAdress('');
     setComment('');
+    setModal(false);
   };
 
   const price = arrOrder => {
@@ -96,6 +123,36 @@ const ShoppingCart = () => {
       (accumulator, currentValue) => accumulator + currentValue,
       0
     );
+  };
+
+  const addAddressForm = address => {
+    setAddress(address);
+    console.log(address);
+  };
+
+  // -----------------  MAP LOGIC
+
+  const toggleModal = () => {
+    setModal(!modal);
+    // console.log(modal);
+  };
+
+  const onPlaceSelect = useCallback(cordinates => {
+    setCenter(cordinates);
+    setMarker(cordinates);
+  }, []);
+
+  const onMarcerAdd = coordinates => {
+    setMarker(coordinates);
+  };
+
+  const onAdressAdd = adr => {
+    setAdress(adr);
+  };
+
+  const clearMarker = () => {
+    setMarker(null);
+    setAdress(null);
   };
 
   return (
@@ -141,14 +198,33 @@ const ShoppingCart = () => {
           </OrderLabel>
           <OrderLabel>
             Address:
-            <OrderInput
+            <div>
+              <Autocomplite
+                isLoaded={isLoaded}
+                onSelect={onPlaceSelect}
+                adress={adress}
+                addAddressForm={addAddressForm}
+              />
+
+              <ButtonMapContainer>
+                <ButtonMap type="button" onClick={toggleModal}>
+                  {modal ? 'Close map' : 'Open map'}
+                </ButtonMap>
+                {marker && (
+                  <ButtonMap type="button" onClick={clearMarker}>
+                    Clear marker
+                  </ButtonMap>
+                )}
+              </ButtonMapContainer>
+            </div>
+            {/* <OrderInput
               required
               type="text"
               value={address}
               onChange={e => {
                 setAddress(e.target.value);
               }}
-            />
+            /> */}
           </OrderLabel>
           <OrderLabel>
             Comment to the order:
@@ -162,12 +238,27 @@ const ShoppingCart = () => {
           </OrderLabel>
           <SubmitFormButton type="submit">Make an order</SubmitFormButton>
         </OrderForm>
+
         {orders.length !== 0 && (
           <OrderPricePrg>Order price: {price(orders)}</OrderPricePrg>
         )}
       </OrderFormContainer>
 
-      {submitted ? (
+      {modal ? (
+        <OutletBox>
+          {isLoaded ? (
+            <Map
+              center={center}
+              marker={marker}
+              onMarcerAdd={onMarcerAdd}
+              onAdressAdd={onAdressAdd}
+              addAddressForm={addAddressForm}
+            />
+          ) : (
+            <h2>Loading...</h2>
+          )}
+        </OutletBox>
+      ) : submitted ? (
         <OutletBox>
           <MessegeBeforeOrder>
             Thank you for your order, we will contact you soon!

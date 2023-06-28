@@ -12,6 +12,9 @@ import { Dominos } from './restaurans/Domonos/Dominos';
 import { Sushi } from './restaurans/Sushi/Sushi';
 import { Sweets } from './restaurans/Sweets/Sweets';
 import { ShopingHostoryPage } from './pages/ShopingHistory/ShopingHistory';
+import { RegisterPage } from './pages/Register/RegisterPage';
+import { LoginPage } from './pages/LoginPage/LoginPage';
+import { AccountPage } from './pages/Account/AccountPage';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +35,9 @@ export const App = () => {
         </Route>
         <Route path="/shoppingCart" element={<ShoppingCart />} />
         <Route path="/shoppingHistory" element={<ShopingHostoryPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/account" element={<AccountPage />} />
         <Route path="*" element={<HomePage />} />
       </Route>
     </Routes>
