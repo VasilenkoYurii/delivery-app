@@ -12,7 +12,7 @@
     "npm": "9.x"
   },
   "scripts": {
-    "heroku-prebuild": "concurrently \"npm run client-install\" \"npm run server-install\"",
+    "heroku-prebuild": "npm install -g concurrently && concurrently \"npm run client-install\" \"npm run server-install\"",
     "heroku-postbuild": "cd client && npm run build",
     "client-install": "cd client && npm install",
     "server-install": "cd server && npm install",
