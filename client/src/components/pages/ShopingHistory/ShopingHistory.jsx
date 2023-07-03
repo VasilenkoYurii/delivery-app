@@ -45,7 +45,7 @@ export const ShopingHostoryPage = () => {
   return (
     <ShoppingHistoryContainer>
       <Helmet>
-        <title>ORDER HISTORY</title>
+        <title>ORDERS HISTORY</title>
       </Helmet>
       <HisrotyFormContainer>
         <HistoryFormTitle>Your order history</HistoryFormTitle>

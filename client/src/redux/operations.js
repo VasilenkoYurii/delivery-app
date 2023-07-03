@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+// ${window.location.origin} http://localhost:3001
+
 axios.defaults.baseURL = `${window.location.origin}`;
 
 export const addMenu = createAsyncThunk(

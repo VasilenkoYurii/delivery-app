@@ -4,6 +4,7 @@ import {
   NavContainer,
   CartIcon,
   PersonIcon,
+  HistoryIcon,
 } from './Navigation.styled';
 
 export const Navigation = () => {
@@ -17,10 +18,12 @@ export const Navigation = () => {
         <NavLinkStyled to="/shoppingCart">
           <CartIcon />
         </NavLinkStyled>
+        <NavLinkStyled to="/shoppingHistory">
+          <HistoryIcon />
+        </NavLinkStyled>
         <NavLinkStyled to="/register">
           <PersonIcon />
         </NavLinkStyled>
-        <NavLinkStyled to="/shoppingHistory">Shopping History</NavLinkStyled>
       </NavContainer>
     </Nav>
   );

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { selectOrder } from 'redux/selectors';
 import {
@@ -11,7 +11,6 @@ import { Helmet } from 'react-helmet';
 
 import { Map } from 'components/Map/Map';
 import { useJsApiLoader } from '@react-google-maps/api';
-import { Autocomplite } from 'components/Autocomplite/Autocomplite';
 
 import {
   ShoppingCartContainer,
@@ -53,9 +52,7 @@ const ShoppingCart = () => {
   const [comment, setComment] = useState(localStorage.getItem('comment') || '');
   const [submitted, setSubmitted] = useState(false);
   const [modal, setModal] = useState(false);
-  const [center, setCenter] = useState(defCenter);
   const [marker, setMarker] = useState(null);
-  const [adress, setAdress] = useState('');
   const orders = useSelector(selectOrder);
 
   const { isLoaded } = useJsApiLoader({
@@ -110,7 +107,6 @@ const ShoppingCart = () => {
     setEmail('');
     setPhone('');
     setAddress('');
-    setAdress('');
     setComment('');
     setModal(false);
   };
@@ -131,29 +127,17 @@ const ShoppingCart = () => {
     console.log(address);
   };
 
-  // -----------------  MAP LOGIC
-
   const toggleModal = () => {
     setModal(!modal);
-    // console.log(modal);
   };
-
-  const onPlaceSelect = useCallback(cordinates => {
-    setCenter(cordinates);
-    setMarker(cordinates);
-  }, []);
 
   const onMarcerAdd = coordinates => {
     setMarker(coordinates);
   };
 
-  const onAdressAdd = adr => {
-    setAdress(adr);
-  };
-
   const clearMarker = () => {
     setMarker(null);
-    setAdress(null);
+    setAddress('');
   };
 
   return (
@@ -204,11 +188,13 @@ const ShoppingCart = () => {
           <OrderLabel>
             Address:
             <div>
-              <Autocomplite
-                isLoaded={isLoaded}
-                onSelect={onPlaceSelect}
-                adress={adress}
-                addAddressForm={addAddressForm}
+              <OrderInput
+                required
+                type="text"
+                value={address}
+                onChange={e => {
+                  setAddress(e.target.value);
+                }}
               />
 
               <ButtonMapContainer>
@@ -222,14 +208,6 @@ const ShoppingCart = () => {
                 )}
               </ButtonMapContainer>
             </div>
-            {/* <OrderInput
-              required
-              type="text"
-              value={address}
-              onChange={e => {
-                setAddress(e.target.value);
-              }}
-            /> */}
           </OrderLabel>
           <OrderLabel>
             Comment to the order:
@@ -253,10 +231,9 @@ const ShoppingCart = () => {
         <OutletBox>
           {isLoaded ? (
             <Map
-              center={center}
+              center={defCenter}
               marker={marker}
               onMarcerAdd={onMarcerAdd}
-              onAdressAdd={onAdressAdd}
               addAddressForm={addAddressForm}
             />
           ) : (
