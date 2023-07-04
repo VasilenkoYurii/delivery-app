@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const restaurantsRouter = require("./routes/api/restaurants");
 const ordersRouter = require("./routes/api/orders");
+const usersRouter = require("./routes/api/auth");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use("/api/restaurants", restaurantsRouter);
 app.use("/api/orders", ordersRouter);
+app.use("/api/users", usersRouter);
 
 const staticPath = path.resolve(`${__dirname}/../client/build`);
 app.use(express.static(staticPath));
