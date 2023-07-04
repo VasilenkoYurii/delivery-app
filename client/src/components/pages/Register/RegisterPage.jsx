@@ -2,6 +2,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Helmet } from 'react-helmet';
 
+import { useDispatch } from 'react-redux';
+import { registerUser } from 'redux/authSlise/operations';
+
 import {
   Container,
   FormContainer,
@@ -31,6 +34,16 @@ const validationSchema = Yup.object({
 });
 
 export const RegisterPage = () => {
+  const dispatch = useDispatch();
+
+  const hendleSubmit = (values, { resetForm }) => {
+    console.log(values);
+
+    dispatch(registerUser(values));
+
+    // resetForm();
+  };
+
   return (
     <Container>
       <Helmet>
@@ -48,9 +61,7 @@ export const RegisterPage = () => {
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { resetForm }) => {
-            console.log(values);
-            alert(JSON.stringify(values, null, 2));
-            resetForm();
+            hendleSubmit(values, { resetForm });
           }}
         >
           <FormBox>

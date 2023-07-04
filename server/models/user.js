@@ -31,6 +31,9 @@ const userSchema = new Schema({
     type: String,
     required: [true, "Address is required"],
   },
+  promo: {
+    type: Array,
+  },
   verify: {
     type: Boolean,
     default: false,

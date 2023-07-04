@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { addMenu } from 'redux/operations';
+import { addMenu } from 'redux/restSlise/operations';
 
 import { Layout } from './Layout/Layout';
 import { HomePage } from './pages/HomePage/HomePage';

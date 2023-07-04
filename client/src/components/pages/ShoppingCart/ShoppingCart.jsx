@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { selectOrder } from 'redux/selectors';
+import { selectOrder } from 'redux/restSlise/selectors';
 import {
   decrementQuantityOrder,
   incrementQuantityOrder,
   makeAnOrder,
-} from 'redux/operations';
+} from 'redux/restSlise/operations';
 import { Helmet } from 'react-helmet';
 
 import { Map } from 'components/Map/Map';
