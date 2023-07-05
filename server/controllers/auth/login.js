@@ -28,8 +28,7 @@ const login = async (req, res, next) => {
   await User.findByIdAndUpdate(user._id, { token });
 
   res.json({
-    email: user.email,
-    subscription: user.subscription,
+    ...user,
     token,
   });
 };

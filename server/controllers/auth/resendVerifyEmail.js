@@ -3,9 +3,12 @@ const { BASE_URL } = process.env;
 const { User } = require("../../models/user");
 
 const { HttpError, sendEmail } = require("../../helpers");
+const verifyEmailTemplate = require("../../template/verifyMail");
 
 const resendVerifyEmail = async (req, res) => {
   const { email } = req.body;
+
+  console.log(email);
   const user = await User.findOne({ email });
   if (!user) {
     throw HttpError(401, "Email not found");
@@ -17,7 +20,7 @@ const resendVerifyEmail = async (req, res) => {
   const verifyEmail = {
     to: email,
     subject: "Verify email",
-    html: `<a target="_blank" href="${BASE_URL}api/auth/verify/${user.verificationCode}">Click verify email</a>`,
+    html: verifyEmailTemplate(BASE_URL, user.verificationToken),
   };
 
   await sendEmail(verifyEmail);

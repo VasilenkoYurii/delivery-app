@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMenu } from 'redux/restSlise/operations';
+import { refreshingUser } from 'redux/authSlise/operations';
 
 import { Layout } from './Layout/Layout';
 import { HomePage } from './pages/HomePage/HomePage';
@@ -21,6 +22,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(addMenu());
+    dispatch(refreshingUser());
   }, [dispatch]);
 
   return (
