@@ -84,3 +84,17 @@ export const refreshingUser = createAsyncThunk(
     }
   }
 );
+
+export const addUserPromo = createAsyncThunk(
+  'auth/addUserPromo',
+  async (credentials, thunkAPI) => {
+    return credentials;
+  }
+);
+
+export const deleteUserPromo = createAsyncThunk(
+  'auth/deleteUserPromo',
+  async (credentials, thunkAPI) => {
+    return credentials;
+  }
+);

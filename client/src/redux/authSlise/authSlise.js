@@ -1,12 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { errorNotify, successNotify } from 'helpers/notification';
-import { registerUser, loginUser, logOut, refreshingUser } from './operations';
+import {
+  registerUser,
+  loginUser,
+  logOut,
+  refreshingUser,
+  addUserPromo,
+  deleteUserPromo,
+} from './operations';
 
 const initialState = {
   user: {},
   activPromo: null,
   token: null,
   isLoggedIn: false,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -41,6 +49,14 @@ const authSlice = createSlice({
       .addCase(refreshingUser.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isLoggedIn = true;
+      })
+      .addCase(addUserPromo.fulfilled, (state, { payload }) => {
+        state.activPromo = payload;
+        successNotify('You successfully activated the promo.');
+      })
+      .addCase(deleteUserPromo.fulfilled, (state, { payload }) => {
+        state.activPromo = null;
+        successNotify('You successfully removed the promo.');
       });
   },
 });

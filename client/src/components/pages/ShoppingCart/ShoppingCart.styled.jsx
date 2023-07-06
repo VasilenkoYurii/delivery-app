@@ -19,7 +19,7 @@ export const OutletBox = styled.div`
 
 export const OrderFormContainer = styled.div`
   width: 280px;
-  height: 500px;
+  height: 550px;
   padding: 10px;
 
   display: flex;
@@ -113,6 +113,8 @@ export const OrderPricePrg = styled.p`
   font-size: 22px;
   text-transform: uppercase;
   font-weight: 400;
+
+  text-align: center;
 `;
 
 export const MessegeBeforeOrder = styled.h2`
@@ -177,6 +179,33 @@ export const ButtonMapContainer = styled.div`
 `;
 
 export const ButtonMap = styled.button`
+  width: 120px;
+  font-size: 14px;
+  font-weight: 300;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid;
+  cursor: pointer;
+  padding: 3px;
+
+  text-transform: uppercase;
+
+  transition: all 500ms;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const ContainerPromoPrice = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CanclePromoButton = styled.button`
+  margin-top: 10px;
   width: 120px;
   font-size: 14px;
   font-weight: 300;

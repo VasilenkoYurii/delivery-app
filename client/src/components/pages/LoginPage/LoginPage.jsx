@@ -40,7 +40,7 @@ export const LoginPage = () => {
 
   useEffect(() => {
     if (isLogedIn === true) {
-      navigate('/');
+      navigate('/account');
     }
   }, [isLogedIn, navigate]);
 
