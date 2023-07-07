@@ -1,14 +1,17 @@
 const bcrypt = require("bcrypt");
 const { nanoid } = require("nanoid");
 require("dotenv").config();
+const nodemailer = require("nodemailer");
 
 const { User } = require("../../models/user");
 const { HttpError, sendEmail } = require("../../helpers");
 const verifyEmailTemplate = require("../../template/verifyMail");
 
+const { MAIL_PASSWORD } = process.env;
+
 const register = async (req, res, next) => {
   const { email, password } = req.body;
-  const BASE_URL = `${req.protocol}://${req.headers.host}`;
+  const BASE_URL = `${req.protocol}://${req.headers.host}/`;
   const user = await User.findOne({ email });
 
   if (user) {
@@ -25,13 +28,36 @@ const register = async (req, res, next) => {
     verificationToken,
   });
 
-  const verifyEmail = {
+  const config = {
+    host: "smtp.meta.ua",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "yura.vasilenko@meta.ua",
+      pass: MAIL_PASSWORD,
+    },
+  };
+
+  const transporter = nodemailer.createTransport(config);
+  const emailOptions = {
+    from: "yura.vasilenko@meta.ua",
     to: email,
-    subject: "Verify email",
+    subject: "Email verification",
     html: verifyEmailTemplate(BASE_URL, verificationToken),
   };
 
-  await sendEmail(verifyEmail);
+  transporter
+    .sendMail(emailOptions)
+    .then((info) => console.log(info))
+    .catch((err) => console.log(err));
+
+  // const verifyEmail = {
+  //   to: email,
+  //   subject: "Verify email",
+  //   html: verifyEmailTemplate(BASE_URL, verificationToken),
+  // };
+
+  // await sendEmail(verifyEmail);
 
   res.status(201).json({
     newUser,
