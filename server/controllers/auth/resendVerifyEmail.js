@@ -1,4 +1,4 @@
-const { BASE_URL } = process.env;
+const BASE_URL = `${req.protocol}://${req.headers.host}`;
 
 const { User } = require("../../models/user");
 
