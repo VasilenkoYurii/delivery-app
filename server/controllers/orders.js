@@ -1,6 +1,7 @@
 const Order = require("../models/order");
 
 const { sendEmail } = require("../helpers");
+const { MAIL_PASSWORD } = process.env;
 
 const orderMail = require("../template/orderMail");
 
@@ -36,13 +37,36 @@ const addContact = async (body) => {
 
   const result = await Order.create(dataWithDate);
 
-  const userOrderEmail = {
-    to: body.email,
-    subject: "Order Confirmation",
+  const config = {
+    host: "smtp.meta.ua",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "yura.vasilenko@meta.ua",
+      pass: MAIL_PASSWORD,
+    },
+  };
+
+  const transporter = nodemailer.createTransport(config);
+  const emailOptions = {
+    from: "yura.vasilenko@meta.ua",
+    to: email,
+    subject: "Email verification",
     html: orderMail(body),
   };
 
-  await sendEmail(userOrderEmail);
+  transporter
+    .sendMail(emailOptions)
+    .then((info) => console.log(info))
+    .catch((err) => console.log(err));
+
+  // const userOrderEmail = {
+  //   to: body.email,
+  //   subject: "Order Confirmation",
+  //   html: orderMail(body),
+  // };
+
+  // await sendEmail(userOrderEmail);
 
   return result;
 };
