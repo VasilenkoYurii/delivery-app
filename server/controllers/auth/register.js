@@ -20,7 +20,7 @@ const register = async (req, res, next) => {
 
   const newUser = await User.create({
     ...req.body,
-    promo: ["20%"],
+    promo: [{ id: 1, value: "20%" }],
     password: hashPassword,
     verificationToken,
   });

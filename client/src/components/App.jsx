@@ -66,6 +66,7 @@ export const App = () => {
             element={<PrivateRoute component={UserPromo} redirectTo="/login" />}
           />
         </Route>
+        <Route path="/api/users/verify/:id" element={<LoginPage />} />
         <Route path="*" element={<HomePage />} />
       </Route>
     </Routes>

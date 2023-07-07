@@ -7,6 +7,7 @@ import {
   refreshingUser,
   addUserPromo,
   deleteUserPromo,
+  removePromoAfterOrder,
 } from './operations';
 
 const initialState = {
@@ -57,6 +58,9 @@ const authSlice = createSlice({
       .addCase(deleteUserPromo.fulfilled, (state, { payload }) => {
         state.activPromo = null;
         successNotify('You successfully removed the promo.');
+      })
+      .addCase(removePromoAfterOrder.fulfilled, (state, { payload }) => {
+        state.user = payload;
       });
   },
 });

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // ${window.location.origin} http://localhost:3001
 
-axios.defaults.baseURL = `http://localhost:3001`;
+axios.defaults.baseURL = `${window.location.origin}`;
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -78,6 +78,19 @@ export const refreshingUser = createAsyncThunk(
     try {
       setAuthHeader(token);
       const res = await axios.get('/api/users/current');
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removePromoAfterOrder = createAsyncThunk(
+  'auth/removePromoAfterOrder',
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await axios.post('/api/users/promo', credentials);
+
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

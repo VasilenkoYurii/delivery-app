@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet';
+import { useAuth } from 'hooks/useAuth';
 import {
   RestLink,
   RestContainer,
@@ -16,10 +17,12 @@ import {
 
 import mainBanner from '../../../img/mainBanner.jpeg';
 import discontBanner from '../../../img/discont-banner.jpg';
-// import accauntBanner from '../../../img/accauntBanner.png'
+import accauntBanner from '../../../img/accauntBanner.png';
 import warningBanner from '../../../img/warningBanner.png';
 
 export const HomePage = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
     <Container>
       <Helmet>
@@ -60,9 +63,15 @@ export const HomePage = () => {
       </BannerBox>
 
       <DiscontBannerBox>
-        <ProposeLink to="/register">
-          <DiscontImg src={discontBanner} alt="Discont banner" />
-        </ProposeLink>
+        {isLoggedIn ? (
+          <ProposeLink to="/account">
+            <DiscontImg src={accauntBanner} alt="Account banner" />
+          </ProposeLink>
+        ) : (
+          <ProposeLink to="/register">
+            <DiscontImg src={discontBanner} alt="Discont banner" />
+          </ProposeLink>
+        )}
 
         <WarningBannerBox>
           <DiscontImg src={warningBanner} alt="Warning banner" />

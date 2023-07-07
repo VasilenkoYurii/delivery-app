@@ -12,7 +12,10 @@ import {
   incrementQuantityOrder,
   makeAnOrder,
 } from 'redux/restSlise/operations';
-import { deleteUserPromo } from 'redux/authSlise/operations';
+import {
+  deleteUserPromo,
+  removePromoAfterOrder,
+} from 'redux/authSlise/operations';
 
 import {
   ShoppingCartContainer,
@@ -101,9 +104,8 @@ const ShoppingCart = () => {
       orders,
     };
 
-    console.log(newUserOrder);
-
     dispatch(makeAnOrder(newUserOrder));
+    dispatch(removePromoAfterOrder(activeUserPromo));
 
     resetForm();
     setSubmitted(true);

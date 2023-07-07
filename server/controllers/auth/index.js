@@ -5,6 +5,7 @@ const logout = require("./logout");
 const getCurrent = require("./getCurrent");
 const verifyEmail = require("./verifyEmail");
 const resendVerifyEmail = require("./resendVerifyEmail");
+const removePromo = require("./removePromo");
 
 module.exports = {
   register: ctrlWrapper(register),
@@ -13,4 +14,5 @@ module.exports = {
   logout: ctrlWrapper(logout),
   verifyEmail: ctrlWrapper(verifyEmail),
   resendVerifyEmail: ctrlWrapper(resendVerifyEmail),
+  removePromo: ctrlWrapper(removePromo),
 };
