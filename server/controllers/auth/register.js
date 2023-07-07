@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
 const { nanoid } = require("nanoid");
 require("dotenv").config();
-const { BASE_URL } = process.env;
-
+const BASE_URL = `${req.protocol}://${req.headers.host}`;
+ 
 const { User } = require("../../models/user");
 const { HttpError, sendEmail } = require("../../helpers");
 const verifyEmailTemplate = require("../../template/verifyMail");
