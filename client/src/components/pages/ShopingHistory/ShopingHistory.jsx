@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import {
   ShoppingHistoryContainer,
   ResponsContainer,
@@ -22,8 +23,11 @@ import {
   UserOrderDescriptionContainer,
   UserOrderDescriptionSpan,
 } from './ShopingHistory.styled';
-import { findOrdersByEmail, findOrdersByPhone } from 'redux/operations';
-import { selectHistory } from 'redux/selectors';
+import {
+  findOrdersByEmail,
+  findOrdersByPhone,
+} from 'redux/restSlise/operations';
+import { selectHistory } from 'redux/restSlise/selectors';
 
 export const ShopingHostoryPage = () => {
   const dispatch = useDispatch();
@@ -43,6 +47,9 @@ export const ShopingHostoryPage = () => {
 
   return (
     <ShoppingHistoryContainer>
+      <Helmet>
+        <title>ORDERS HISTORY</title>
+      </Helmet>
       <HisrotyFormContainer>
         <HistoryFormTitle>Your order history</HistoryFormTitle>
 

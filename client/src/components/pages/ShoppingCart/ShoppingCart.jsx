@@ -1,16 +1,21 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { selectOrder } from 'redux/selectors';
+import { Helmet } from 'react-helmet';
+import { Map } from 'components/Map/Map';
+import { useJsApiLoader } from '@react-google-maps/api';
+
+import { selectOrder } from 'redux/restSlise/selectors';
+import { useAuth } from 'hooks/useAuth';
 import {
   decrementQuantityOrder,
   incrementQuantityOrder,
   makeAnOrder,
-} from 'redux/operations';
-
-import { Map } from 'components/Map/Map';
-import { useJsApiLoader } from '@react-google-maps/api';
-import { Autocomplite } from 'components/Autocomplite/Autocomplite';
+} from 'redux/restSlise/operations';
+import {
+  deleteUserPromo,
+  removePromoAfterOrder,
+} from 'redux/authSlise/operations';
 
 import {
   ShoppingCartContainer,
@@ -34,6 +39,8 @@ import {
   MinusIcon,
   ButtonMap,
   ButtonMapContainer,
+  ContainerPromoPrice,
+  CanclePromoButton,
 } from './ShoppingCart.styled';
 
 const defCenter = {
@@ -44,6 +51,7 @@ const libraries = ['places'];
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
+  const { activeUserPromo } = useAuth();
 
   const [name, setName] = useState(localStorage.getItem('name') || '');
   const [email, setEmail] = useState(localStorage.getItem('email') || '');
@@ -52,9 +60,7 @@ const ShoppingCart = () => {
   const [comment, setComment] = useState(localStorage.getItem('comment') || '');
   const [submitted, setSubmitted] = useState(false);
   const [modal, setModal] = useState(false);
-  const [center, setCenter] = useState(defCenter);
   const [marker, setMarker] = useState(null);
-  const [adress, setAdress] = useState('');
   const orders = useSelector(selectOrder);
 
   const { isLoaded } = useJsApiLoader({
@@ -92,13 +98,14 @@ const ShoppingCart = () => {
       phone,
       address,
       comment,
-      price: price(orders),
+      price: activeUserPromo
+        ? priceWithPromo(orders, activeUserPromo.value)
+        : price(orders),
       orders,
     };
 
-    console.log(newUserOrder);
-
     dispatch(makeAnOrder(newUserOrder));
+    dispatch(removePromoAfterOrder(activeUserPromo));
 
     resetForm();
     setSubmitted(true);
@@ -109,7 +116,6 @@ const ShoppingCart = () => {
     setEmail('');
     setPhone('');
     setAddress('');
-    setAdress('');
     setComment('');
     setModal(false);
   };
@@ -125,38 +131,50 @@ const ShoppingCart = () => {
     );
   };
 
-  const addAddressForm = address => {
-    setAddress(address);
-    console.log(address);
+  const priceWithPromo = (arrOrder, promo) => {
+    const arrPrice = arrOrder.map(order => {
+      return order.price * order.quantity;
+    });
+
+    const totalPrice = arrPrice.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    );
+
+    const discountPercentage = parseFloat(promo) / 100;
+    const discount = totalPrice * discountPercentage;
+    const finalPrice = totalPrice - discount;
+
+    return finalPrice;
   };
 
-  // -----------------  MAP LOGIC
+  const hendleCancelPromo = () => {
+    dispatch(deleteUserPromo());
+  };
+
+  const addAddressForm = address => {
+    setAddress(address);
+  };
 
   const toggleModal = () => {
     setModal(!modal);
-    // console.log(modal);
   };
-
-  const onPlaceSelect = useCallback(cordinates => {
-    setCenter(cordinates);
-    setMarker(cordinates);
-  }, []);
 
   const onMarcerAdd = coordinates => {
     setMarker(coordinates);
   };
 
-  const onAdressAdd = adr => {
-    setAdress(adr);
-  };
-
   const clearMarker = () => {
     setMarker(null);
-    setAdress(null);
+    setAddress('');
   };
 
   return (
     <ShoppingCartContainer>
+      <Helmet>
+        <title>SHOPPING CART</title>
+      </Helmet>
+
       <OrderFormContainer>
         <OrderForm
           onSubmit={e => {
@@ -199,11 +217,13 @@ const ShoppingCart = () => {
           <OrderLabel>
             Address:
             <div>
-              <Autocomplite
-                isLoaded={isLoaded}
-                onSelect={onPlaceSelect}
-                adress={adress}
-                addAddressForm={addAddressForm}
+              <OrderInput
+                required
+                type="text"
+                value={address}
+                onChange={e => {
+                  setAddress(e.target.value);
+                }}
               />
 
               <ButtonMapContainer>
@@ -217,14 +237,6 @@ const ShoppingCart = () => {
                 )}
               </ButtonMapContainer>
             </div>
-            {/* <OrderInput
-              required
-              type="text"
-              value={address}
-              onChange={e => {
-                setAddress(e.target.value);
-              }}
-            /> */}
           </OrderLabel>
           <OrderLabel>
             Comment to the order:
@@ -240,7 +252,21 @@ const ShoppingCart = () => {
         </OrderForm>
 
         {orders.length !== 0 && (
-          <OrderPricePrg>Order price: {price(orders)}</OrderPricePrg>
+          <div>
+            {activeUserPromo ? (
+              <ContainerPromoPrice>
+                <OrderPricePrg>
+                  Order price old: {price(orders)}, with promo:{' '}
+                  {priceWithPromo(orders, activeUserPromo.value)}
+                </OrderPricePrg>
+                <CanclePromoButton onClick={hendleCancelPromo}>
+                  Cancel promo
+                </CanclePromoButton>
+              </ContainerPromoPrice>
+            ) : (
+              <OrderPricePrg>Order price: {price(orders)}</OrderPricePrg>
+            )}
+          </div>
         )}
       </OrderFormContainer>
 
@@ -248,10 +274,9 @@ const ShoppingCart = () => {
         <OutletBox>
           {isLoaded ? (
             <Map
-              center={center}
+              center={defCenter}
               marker={marker}
               onMarcerAdd={onMarcerAdd}
-              onAdressAdd={onAdressAdd}
               addAddressForm={addAddressForm}
             />
           ) : (

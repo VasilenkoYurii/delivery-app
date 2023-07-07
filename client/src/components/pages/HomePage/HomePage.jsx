@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet';
+import { useAuth } from 'hooks/useAuth';
 import {
   RestLink,
   RestContainer,
@@ -9,89 +11,25 @@ import {
   BannerBox,
   BannerImg,
   DiscontImg,
+  DiscontBannerBox,
+  WarningBannerBox,
 } from './HomePage.styled';
 
-import banner from '../../../img/banner.jpeg';
+import mainBanner from '../../../img/mainBanner.jpeg';
 import discontBanner from '../../../img/discont-banner.jpg';
-// import { useState, useCallback } from 'react';
-// import { useJsApiLoader } from '@react-google-maps/api';
-// import { Map, MODES } from 'components/Map/Map';
-// import { Autocomplite } from 'components/Autocomplite/Autocomplite';
-
-// const defCenter = {
-//   lat: 50.4501,
-//   lng: 30.5234,
-// };
-
-// const libraries = ['places'];
+import accauntBanner from '../../../img/accauntBanner.png';
+import warningBanner from '../../../img/warningBanner.png';
 
 export const HomePage = () => {
-  // const [center, setCenter] = useState(defCenter);
-  // const [mode, setMode] = useState(MODES.MOVE);
-  // const [marker, setMarker] = useState(null);
-  // const [adress, setAdress] = useState(null);
-
-  // const { isLoaded } = useJsApiLoader({
-  //   id: 'google-map-script',
-  //   googleMapsApiKey: 'AIzaSyCzpvGD2TMrrs1zAtqq5RsydgIJMJmfD4Y',
-  //   libraries,
-  // });
-
-  // const onPlaceSelect = useCallback(cordinates => {
-  //   setCenter(cordinates);
-  //   setMarker(cordinates);
-  // }, []);
-
-  // const toggleMode = () => {
-  //   switch (mode) {
-  //     case MODES.MOVE:
-  //       setMode(MODES.SET_MARKER);
-  //       break;
-  //     case MODES.SET_MARKER:
-  //       setMode(MODES.MOVE);
-  //       break;
-  //     default:
-  //       setMode(MODES.MOVE);
-  //   }
-  // };
-
-  // const onMarcerAdd = coordinates => {
-  //   setMarker(coordinates);
-  // };
-
-  // const onAdressAdd = adr => {
-  //   setAdress(adr);
-  // };
-
-  // const clearMarker = () => {
-  //   setMarker(null);
-  //   setAdress(null);
-  // };
+  const { isLoggedIn } = useAuth();
 
   return (
     <Container>
-      {/* <div>
-        <Autocomplite
-          isLoaded={isLoaded}
-          onSelect={onPlaceSelect}
-          adress={adress}
-        />
-        <button onClick={toggleMode}>set markers</button>
-        <button onClick={clearMarker}>clear</button>
-      </div>
-      {isLoaded ? (
-        <Map
-          center={center}
-          mode={mode}
-          marker={marker}
-          onMarcerAdd={onMarcerAdd}
-          onAdressAdd={onAdressAdd}
-        />
-      ) : (
-        <h2>Load...</h2>
-      )} */}
+      <Helmet>
+        <title>HOME</title>
+      </Helmet>
+
       <RestContainer>
-        {/* <Title>Choose</Title> */}
         <LinkContainer>
           <RestLink to="shop/mcDonalds">
             <Img
@@ -121,12 +59,24 @@ export const HomePage = () => {
       </RestContainer>
 
       <BannerBox>
-        <BannerImg src={banner} alt="Restaurant banner" />
+        <BannerImg src={mainBanner} alt="Restaurant banner" />
       </BannerBox>
 
-      <ProposeLink to="/register">
-        <DiscontImg src={discontBanner} alt="Discont banner" />
-      </ProposeLink>
+      <DiscontBannerBox>
+        {isLoggedIn ? (
+          <ProposeLink to="/account">
+            <DiscontImg src={accauntBanner} alt="Account banner" />
+          </ProposeLink>
+        ) : (
+          <ProposeLink to="/register">
+            <DiscontImg src={discontBanner} alt="Discont banner" />
+          </ProposeLink>
+        )}
+
+        <WarningBannerBox>
+          <DiscontImg src={warningBanner} alt="Warning banner" />
+        </WarningBannerBox>
+      </DiscontBannerBox>
     </Container>
   );
 };

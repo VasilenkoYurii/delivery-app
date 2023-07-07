@@ -1,10 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+// ${window.location.origin} http://localhost:3001
+
 axios.defaults.baseURL = `${window.location.origin}`;
 
 export const addMenu = createAsyncThunk(
-  'user/addMenu',
+  'restaurant/addMenu',
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.get('/api/restaurants');
@@ -16,7 +18,7 @@ export const addMenu = createAsyncThunk(
 );
 
 export const addOrder = createAsyncThunk(
-  'user/addOrder',
+  'restaurant/addOrder',
   (credentials, thunkAPI) => {
     try {
       return credentials;
@@ -27,7 +29,7 @@ export const addOrder = createAsyncThunk(
 );
 
 export const decrementQuantityOrder = createAsyncThunk(
-  'user/decrementQuantityOrder',
+  'restaurant/decrementQuantityOrder',
   (credentials, thunkAPI) => {
     try {
       return credentials;
@@ -38,7 +40,7 @@ export const decrementQuantityOrder = createAsyncThunk(
 );
 
 export const incrementQuantityOrder = createAsyncThunk(
-  'user/incrementQuantityOrder',
+  'restaurant/incrementQuantityOrder',
   (credentials, thunkAPI) => {
     try {
       return credentials;
@@ -49,7 +51,7 @@ export const incrementQuantityOrder = createAsyncThunk(
 );
 
 export const makeAnOrder = createAsyncThunk(
-  'user/makeAnOrder',
+  'restaurant/makeAnOrder',
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('/api/orders', credentials);
@@ -62,7 +64,7 @@ export const makeAnOrder = createAsyncThunk(
 );
 
 export const findOrdersByEmail = createAsyncThunk(
-  'user/findOrdersByEmail',
+  'restaurant/findOrdersByEmail',
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.get(`/api/orders/byEmail/${credentials}`);
@@ -75,7 +77,7 @@ export const findOrdersByEmail = createAsyncThunk(
 );
 
 export const findOrdersByPhone = createAsyncThunk(
-  'user/findOrdersByPhone',
+  'restaurant/findOrdersByPhone',
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.get(`/api/orders/byPhone/${credentials}`);

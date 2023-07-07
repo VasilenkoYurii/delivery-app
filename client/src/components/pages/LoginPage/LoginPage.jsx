@@ -1,5 +1,12 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { Helmet } from 'react-helmet';
+
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectIsLoggedIn } from 'redux/authSlise/selectors';
+import { loginUser } from 'redux/authSlise/operations';
 
 import {
   Container,
@@ -14,17 +21,43 @@ import {
 } from './LoginPage.styled';
 
 const emailRegexp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+const passwordRegexp =
+  /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/;
 
 const validationSchema = Yup.object({
   email: Yup.string()
     .required('Required')
     .matches(emailRegexp, 'Invalid email address'),
-  password: Yup.string().required('Required'),
+  password: Yup.string()
+    .required('Required')
+    .matches(passwordRegexp, 'Invalid passwors'),
 });
 
 export const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLogedIn = useSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    if (isLogedIn === true) {
+      navigate('/account');
+    }
+  }, [isLogedIn, navigate]);
+
+  const hendleSubmit = async (values, { resetForm }) => {
+    try {
+      await dispatch(loginUser(values));
+      resetForm();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container>
+      <Helmet>
+        <title>LOGIN</title>
+      </Helmet>
       <FormContainer>
         <FormTitle>Login</FormTitle>
         <Formik
@@ -34,9 +67,7 @@ export const LoginPage = () => {
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { resetForm }) => {
-            console.log(values);
-            alert(JSON.stringify(values, null, 2));
-            resetForm();
+            hendleSubmit(values, { resetForm });
           }}
         >
           <FormBox>

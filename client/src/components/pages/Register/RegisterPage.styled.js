@@ -101,3 +101,42 @@ export const LinkTo = styled(Link)`
     color: #762929;
   }
 `;
+
+export const RegisterMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  width: 100%;
+
+  margin-bottom: 30px;
+`;
+
+export const RegisterMessagePrg = styled.p`
+  text-align: center;
+
+  text-transform: uppercase;
+`;
+
+export const RegisterMessageSpan = styled.span`
+  text-transform: none;
+`;
+
+export const SendMailButton = styled.button`
+  font-size: 16px;
+
+  background-color: #fff;
+  outline: none;
+  border: 1px solid;
+  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+  text-transform: uppercase;
+
+  transition: all 500ms;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+`;

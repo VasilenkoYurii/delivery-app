@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { selectMenu } from 'redux/selectors';
-import { addOrder } from 'redux/operations';
+import { selectMenu } from 'redux/restSlise/selectors';
+import { addOrder } from 'redux/restSlise/operations';
+import { Helmet } from 'react-helmet';
 import {
   List,
   ListItem,
@@ -20,6 +21,9 @@ export const McDonalds = () => {
     <>
       {menu && (
         <List>
+          <Helmet>
+            <title>McDonalds</title>
+          </Helmet>
           {macMenu.map(position => {
             return (
               <ListItem key={position._id}>

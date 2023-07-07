@@ -27,13 +27,7 @@ export const MODES = {
   SET_MARKER: 1,
 };
 
-export function Map({
-  center,
-  onMarcerAdd,
-  marker,
-  onAdressAdd,
-  addAddressForm,
-}) {
+export function Map({ center, onMarcerAdd, marker, addAddressForm }) {
   const mapRef = useRef(undefined);
 
   const onLoad = useCallback(function callback(map) {
@@ -55,7 +49,6 @@ export function Map({
     geocoder.geocode({ location: latLng }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
-          onAdressAdd(results[0].formatted_address);
           addAddressForm(results[0].formatted_address);
         } else {
           alert('wrong');
