@@ -1,14 +1,14 @@
 const bcrypt = require("bcrypt");
 const { nanoid } = require("nanoid");
 require("dotenv").config();
-const BASE_URL = `${req.protocol}://${req.headers.host}`;
- 
+
 const { User } = require("../../models/user");
 const { HttpError, sendEmail } = require("../../helpers");
 const verifyEmailTemplate = require("../../template/verifyMail");
 
 const register = async (req, res, next) => {
   const { email, password } = req.body;
+  const BASE_URL = `${req.protocol}://${req.headers.host}`;
   const user = await User.findOne({ email });
 
   if (user) {

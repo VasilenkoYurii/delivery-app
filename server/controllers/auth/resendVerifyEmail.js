@@ -1,4 +1,4 @@
-const BASE_URL = `${req.protocol}://${req.headers.host}`;
+
 
 const { User } = require("../../models/user");
 
@@ -7,6 +7,7 @@ const verifyEmailTemplate = require("../../template/verifyMail");
 
 const resendVerifyEmail = async (req, res) => {
   const { email } = req.body;
+  const BASE_URL = `${req.protocol}://${req.headers.host}`;
 
   console.log(email);
   const user = await User.findOne({ email });
