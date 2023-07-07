@@ -1,7 +1,8 @@
 const Order = require("../models/order");
 
-const { sendEmail } = require("../helpers");
+// const { sendEmail } = require("../helpers");
 const { MAIL_PASSWORD } = process.env;
+const nodemailer = require("nodemailer");
 
 const orderMail = require("../template/orderMail");
 
@@ -50,7 +51,7 @@ const addContact = async (body) => {
   const transporter = nodemailer.createTransport(config);
   const emailOptions = {
     from: "yura.vasilenko@meta.ua",
-    to: email,
+    to: body.email,
     subject: "Email verification",
     html: orderMail(body),
   };
